@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Link — Bridge Between Paper and Cloud</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-dark: #0a1128;
+            --navy-card: #121d3b;
+            --gold-accent: #d4af37;
+            --gold-hover: #f3cf55;
+            --white-pure: #ffffff;
+            --text-muted: #a0aec0;
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--navy-dark);
+            color: var(--white-pure);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* Mobile-first container size */
+            padding: 20px 16px 40px 16px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+                padding: 40px 24px;
+            }
+        }
+
+        /* Header / Brand */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            margin-top: 10px;
+        }
+
+        .hummingbird-logo {
+            width: 28px;
+            height: 28px;
+            fill: var(--gold-accent);
+        }
+
+        .brand-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--white-pure);
+            text-transform: uppercase;
+        }
+
+        .brand-name span {
+            color: var(--gold-accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            background: linear-gradient(180deg, var(--navy-card) 0%, var(--navy-dark) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 60%, var(--gold-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            width: 100%;
+            padding: 14px 24px;
+            background-color: var(--gold-accent);
+            color: var(--navy-dark);
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:active, .btn-primary:hover {
+            background-color: var(--gold-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Section Commons */
+        .section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold-accent);
+            margin-bottom: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card {
+            background-color: var(--navy-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        /* Buttons Grid for Cloud Docs */
+        .cloud-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cloud-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 14px 18px;
+            border-radius: 12px;
+            color: var(--white-pure);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+
+        .cloud-btn:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        .cloud-btn span.icon {
+            color: var(--gold-accent);
+        }
+
+        /* Focus & Productivity Tools */
+        .timer-display {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--white-pure);
+            margin: 10px 0;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--gold-accent);
+            color: var(--gold-accent);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-secondary.active {
+            background: var(--gold-accent);
+            color: var(--navy-dark);
+        }
+
+        /* Checklist */
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 15px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            accent-color: var(--gold-accent);
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Audio Cards */
+        .audio-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .audio-item:last-child {
+            border-bottom: none;
+        }
+
+        .audio-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .audio-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .audio-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .play-link {
+            color: var(--gold-accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nfc-note {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px dashed var(--gold-accent);
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <!-- Hummingbird SVG Logo -->
+            <svg class="hummingbird-logo" viewBox="0 0 24 24">
+                <path d="M21.5,2C21.5,2 17.5,3.5 13.5,7.5C11,10 9,13 8,15C7,13.5 5.5,12 3,11.5C2,11.3 1,11.5 1,11.5C1,11.5 3,13.5 4.5,16C5.5,17.7 6.2,20 6.5,22C7.5,21 9.5,19 11,18.5C13,18 16,18.5 18,20C18.5,18 18.8,15.5 18,13C17.2,10.5 18.5,7.5 20,5.5C20.8,4.4 21.5,2 21.5,2Z"/>
+            </svg>
+            <div class="brand-name">Nova <span>Link</span></div>
+        </header>
+
+        <!-- 1. Hero Section -->
+        <section class="hero">
+            <h1>Nova Link — Bridge Between Paper & Cloud</h1>
+            <p>Tap Into Smart Learning. No apps, no charging, just instant access.</p>
+            <a href="#hub" class="btn-primary">Explore Your Hub</a>
+        </section>
+
+        <div id="hub"></div>
+
+        <!-- 2. Cloud Document Integration Section -->
+        <div class="section-title">☁️ Cloud Integration</div>
+        <section class="card cloud-grid">
+            <a href="https://drive.google.com" target="_blank" class="cloud-btn">
+                <span>Google Drive Notes & Syllabi</span>
+                <span class="icon">➔</span>
+            </a>
+            <a href="https://notion.so" target="_blank" class="cloud-btn">
+                <span>Notion Study Workspace</span>
+                <span class="icon">➔</span>
+            </a>
+        </section>
+
+        <!-- 3. Focus & Productivity Section -->
+        <div class="section-title">⏱️ Focus & Productivity</div>
+        <section class="card">
+            <div class="timer-display" id="timer">25:00</div>
+            <div class="timer-controls">
+                <button class="btn-secondary active" id="startBtn" onclick="toggleTimer()">Start</button>
+                <button class="btn-secondary" onclick="resetTimer(25)">25m Work</button>
+                <button class="btn-secondary" onclick="resetTimer(5)">5m Break</button>
+            </div>
+
+            <div class="checklist">
+                <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 5px;">Daily Study Planner</div>
+                <label class="checklist-item">
+                    <input type="checkbox"> Complete flashcards revision
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox"> Review Google Drive lecture notes
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox"> Solve 1 sets of PYQs
+                </label>
+            </div>
+        </section>
+
+        <!-- 4. Ambient Audio Sync Section -->
+        <div class="section-title">🎧 Ambient Audio Sync</div>
+        <section class="card">
+            <div class="audio-item">
+                <div class="audio-info">
+                    <span class="audio-title">Lo-Fi Study Beats</span>
+                    <span class="audio-sub">Spotify Playlist</span>
+                </div>
+                <a href="https://open.spotify.com" target="_blank" class="play-link">Listen ↗</a>
+            </div>
+            <div class="audio-item">
+                <div class="audio-info">
+                    <span class="audio-title">Instrumental Focus Music</span>
+                    <span class="audio-sub">Deep Concentration Soundscapes</span>
+                </div>
+                <a href="https://youtube.com" target="_blank" class="play-link">Listen ↗</a>
+            </div>
+        </section>
+
+        <!-- 5. Digital Revision Decks Section -->
+        <div class="section-title">📚 Digital Revision Decks</div>
+        <section class="card cloud-grid">
+            <a href="https://quizlet.com" target="_blank" class="cloud-btn">
+                <span>Quizlet Flashcard Decks</span>
+                <span class="icon">➔</span>
+            </a>
+            <a href="#" class="cloud-btn">
+                <span>Practice Questions & PYQs</span>
+                <span class="icon">➔</span>
+            </a>
+        </section>
+
+        <!-- 6. Footer & Customization Info -->
+        <footer>
+            <div class="nfc-note">
+                💡 <strong>NFC Connected:</strong> This hub is linked directly to your physical <strong>Nova Link NFC Elastic Band</strong>. Tap your phone against your band anytime to instant-launch this setup without downloading any software.
+            </div>
+
+            <a href="#" class="btn-primary" style="margin-bottom: 20px;">Get Your NFC Band</a>
+
+            <div class="social-links">
+                <a href="#">Instagram</a> •
+                <a href="#">TikTok</a> •
+                <a href="#">Discord Community</a>
+            </div>
+
+            <div class="copyright">
+                &copy; 2026 Nova Link Student Gear. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- Interactive Pomodoro Timer Script -->
+    <script>
+        let timeLeft = 25 * 60;
+        let timerId = null;
+        let isRunning = false;
+
+        function updateDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function toggleTimer() {
+            const startBtn = document.getElementById('startBtn');
+            if (isRunning) {
+                clearInterval(timerId);
+                isRunning = false;
+                startBtn.textContent = 'Start';
+            } else {
+                isRunning = true;
+                startBtn.textContent = 'Pause';
+                timerId = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        updateDisplay();
+                    } else {
+                        clearInterval(timerId);
+                        isRunning = false;
+                        alert('Session Complete!');
+                        startBtn.textContent = 'Start';
+                    }
+                }, 1000);
+            }
+        }
+
+        function resetTimer(minutes) {
+            clearInterval(timerId);
+            isRunning = false;
+            timeLeft = minutes * 60;
+            document.getElementById('startBtn').textContent = 'Start';
+            updateDisplay();
+        }
+    </script>
+</body>
+</html>
