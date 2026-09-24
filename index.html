@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Link — Enterprise Academic Command Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #07090e;
+            color: #cbd5e1;
+            overflow-x: hidden;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .gold-accent {
+            color: #f59e0b;
+        }
+        .gold-border {
+            border-color: rgba(245, 158, 11, 0.25);
+        }
+        .gold-bg {
+            background-color: #f59e0b;
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(11, 15, 25, 0.8) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @keyframes floatGlow {
+            0%, 100% { transform: translateY(0px); box-shadow: 0 0 20px rgba(245, 158, 11, 0.05); }
+            50% { transform: translateY(-5px); box-shadow: 0 0 35px rgba(245, 158, 11, 0.15); }
+        }
+        .floating-glow {
+            animation: floatGlow 6s ease-in-out infinite;
+        }
+        .transition-smooth {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07090e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
+
+    <div id="auth-screen" class="fixed inset-0 bg-[#05070a] z-50 flex items-center justify-center p-4 transition-all duration-700">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.05)_0%,transparent_70%)] pointer-events-none"></div>
+        <div class="glass-card max-w-md w-full p-8 rounded-2xl border gold-border text-center space-y-6 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>
+            
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase gold-border border bg-[#0b0f19] gold-accent">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Authorized Access Only
+            </div>
+            
+            <div class="space-y-2">
+                <h2 class="text-2xl font-bold tracking-tight text-white">Nova Link <span class="gold-accent">Startup Gateway</span></h2>
+                <p class="text-xs text-slate-400">Enter your enterprise passcode to decrypt and initialize the student ecosystem.</p>
+            </div>
+            
+            <div class="space-y-3">
+                <input type="password" id="passcode" placeholder="ENTER PASSCODE..." class="w-full bg-[#07090e] border gold-border rounded-xl p-3.5 text-white text-center font-mono tracking-widest text-sm focus:outline-none focus:border-amber-500 transition-smooth shadow-inner">
+                <button onclick="checkPassword()" class="w-full py-3.5 bg-amber-500 text-black font-bold text-sm tracking-wide rounded-xl hover:bg-amber-400 transition-smooth shadow-lg shadow-amber-500/10 active:scale-[0.98]">
+                    INITIALIZE PLATFORM
+                </button>
+            </div>
+            
+            <p id="error-msg" class="text-xs font-mono text-red-400 hidden">ERROR: Invalid enterprise credentials.</p>
+        </div>
+    </div>
+
+    <main id="main-content" class="hidden max-w-5xl mx-auto px-4 py-12 w-full space-y-12 opacity-0 transition-opacity duration-1000">
+
+        <section class="text-center space-y-6 py-12 border-b gold-border relative">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(245,158,11,0.04)_0%,transparent_60%)] pointer-events-none"></div>
+            
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide gold-border border bg-[#0f172a] gold-accent shadow-sm">
+                <span class="w-2 h-2 rounded-full gold-bg animate-ping"></span> Enterprise NFC Infrastructure
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                Nova Link — <span class="gold-accent">Your Ultimate Academic Command Center</span>
+            </h1>
+            
+            <p class="text-base md:text-lg text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
+                Instant NFC-powered access to your entire semester roadmap, study tools, and academic resources.
+            </p>
+            
+            <div class="pt-4">
+                <a href="#resources" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-sm bg-amber-500 text-black hover:bg-amber-400 transition-smooth shadow-xl shadow-amber-500/20 hover:-translate-y-0.5">
+                    Open Digital Hub 
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </a>
+            </div>
+        </section>
+
+        <section id="resources" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full gold-bg shadow-sm shadow-amber-500"></span>
+                <h2 class="text-lg font-bold tracking-wide text-white uppercase font-mono">Core Academic & Cloud Resources</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer" class="glass-card p-6 rounded-2xl border gold-border floating-glow transition-smooth hover:border-amber-500/50 space-y-4 group block">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-bold text-white group-hover:text-amber-400 transition-smooth">Centralized Cloud Storage</span>
+                        <span class="text-xs gold-accent font-mono px-2.5 py-1 rounded bg-[#07090e] border gold-border">Google Drive</span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed">Quick access links to live lecture notes, downloadable slides, and curated semester course syllabi.</p>
+                    <span class="inline-flex items-center gap-1.5 text-xs font-bold gold-accent group-hover:text-white transition-smooth pt-2">
+                        Access Drive Folders 
+                        <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </span>
+                </a>
+
+                <a href="https://quizlet.com" target="_blank" rel="noopener noreferrer" class="glass-card p-6 rounded-2xl border gold-border floating-glow transition-smooth hover:border-amber-500/50 space-y-4 group block">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-bold text-white group-hover:text-amber-400 transition-smooth">Smart Flashcards & Active Recall</span>
+                        <span class="text-xs gold-accent font-mono px-2.5 py-1 rounded bg-[#07090e] border gold-border">Quizlet / Decks</span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed">Embedded quick-decks designed for rapid active revision, concept testing, and core exam preparation.</p>
+                    <span class="inline-flex items-center gap-1.5 text-xs font-bold gold-accent group-hover:text-white transition-smooth pt-2">
+                        Open Revision Decks 
+                        <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <section class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full gold-bg shadow-sm shadow-amber-500"></span>
+                <h2 class="text-lg font-bold tracking-wide text-white uppercase font-mono">Advanced Student Productivity Tools</h2>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="glass-card p-6 rounded-2xl border gold-border space-y-4 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-white uppercase font-mono">Study Sprint</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs mb-3">
+                            <div>
+                                <label class="text-slate-400 block mb-1 text-[10px] font-mono">WORK (MIN)</label>
+                                <input type="number" id="work-input" value="25" min="1" max="120" class="w-full bg-[#07090e] border gold-border rounded-lg p-1.5 text-white text-center font-mono focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="text-slate-400 block mb-1 text-[10px] font-mono">BREAK (MIN)</label>
+                                <input type="number" id="break-input" value="5" min="1" max="60" class="w-full bg-[#07090e] border gold-border rounded-lg p-1.5 text-white text-center font-mono focus:outline-none focus:border-amber-500">
+                            </div>
+                        </div>
+                        <div class="text-3xl font-extrabold font-mono text-white text-center py-3 bg-[#07090e] rounded-xl border gold-border tracking-wider shadow-inner" id="timer-display">25:00</div>
+                    </div>
+                    <div class="flex gap-2 justify-center pt-2">
+                        <button onclick="setCustomTimer()" class="px-3 py-1.5 bg-[#1e293b] text-slate-300 text-xs font-bold rounded-lg hover:bg-slate-700 transition-smooth">Set</button>
+                        <button onclick="startTimer()" class="px-4 py-1.5 bg-amber-500 text-black text-xs font-extrabold rounded-lg hover:bg-amber-400 transition-smooth shadow-md shadow-amber-500/10">Start</button>
+                        <button onclick="resetTimer()" class="px-3 py-1.5 bg-[#1e293b] text-slate-300 text-xs font-bold rounded-lg hover:bg-slate-700 transition-smooth">Reset</button>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border gold-border space-y-4 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-white uppercase font-mono">Deadlines</span>
+                            <span class="text-[10px] font-mono text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded">Live Tracker</span>
+                        </div>
+                        <ul class="text-xs space-y-2.5">
+                            <li class="flex justify-between items-center bg-[#07090e] p-2.5 rounded-xl border gold-border">
+                                <span class="text-slate-300 font-medium">HR Case Study</span>
+                                <span class="text-red-400 font-mono font-bold">2d Left</span>
+                            </li>
+                            <li class="flex justify-between items-center bg-[#07090e] p-2.5 rounded-xl border gold-border">
+                                <span class="text-slate-300 font-medium">Banking Reg.</span>
+                                <span class="gold-accent font-mono font-bold">5d Left</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="text-[10px] text-slate-400 font-mono text-center pt-2 border-t border-slate-800">
+                        Syncs with Cloud Calendar
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border gold-border space-y-3 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-white uppercase font-mono">Reference Hub</span>
+                            <span class="text-[10px] font-mono text-slate-400">Quick Toggle</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Instant toggle drawers for core commerce, statistics, financial formulas, and research citation shortcuts.</p>
+                    </div>
+                    <div>
+                        <button onclick="toggleFormulas()" id="formula-btn" class="w-full py-2 bg-[#07090e] border gold-border rounded-xl text-xs font-bold gold-accent hover:bg-amber-500 hover:text-black transition-smooth mb-2">
+                            Expand Formulas
+                        </button>
+                        <div id="formula-drawer" class="hidden text-[11px] font-mono text-slate-300 bg-[#07090e] p-2.5 rounded-xl border gold-border space-y-1 max-h-32 overflow-y-auto">
+                            <p class="text-amber-400 font-bold border-b border-slate-800 pb-1">Key Formulas:</p>
+                            <p>• ROI = (Net Profit / Cost) × 100</p>
+                            <p>• Current Ratio = CA / CL</p>
+                            <p>• Std Dev ($\sigma$) = $\sqrt{\frac{\sum(x - \mu)^2}{N}}$</p>
+                            <p>• APA Cite: Author (Year). Title.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border gold-border space-y-3 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-white uppercase font-mono">Soundboard</span>
+                            <span class="text-[10px] font-mono text-emerald-400">Audio Sync</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">One-tap audio toggles for productivity-boosting background soundscapes (Lo-Fi beats & rain).</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 pt-1">
+                        <button onclick="toggleAudio('lofi')" id="btn-lofi" class="py-2 bg-[#07090e] border gold-border rounded-xl text-[10px] font-bold text-slate-300 hover:border-amber-500 transition-smooth">Lo-Fi</button>
+                        <button onclick="toggleAudio('rain')" id="btn-rain" class="py-2 bg-[#07090e] border gold-border rounded-xl text-[10px] font-bold text-slate-300 hover:border-amber-500 transition-smooth">Rain</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="space-y-6 pb-12">
+            <div class="flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full gold-bg shadow-sm shadow-amber-500"></span>
+                <h2 class="text-lg font-bold tracking-wide text-white uppercase font-mono">Micro-Learning & Concept Hub</h2>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl border gold-border space-y-4 relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                <h3 class="text-lg font-bold text-white">Instant Concept Explainer Matrix</h3>
+                <p class="text-sm text-slate-400 max-w-3xl leading-relaxed">Quick-reference summaries and framework breakdowns for complex study topics (HR lifecycle principles, central banking regulations, and statistical frequency models) engineered for rapid cognitive retention.</p>
+                <div class="flex gap-3 pt-2 flex-wrap">
+                    <span class="text-xs font-mono px-3.5 py-1.5 rounded-xl bg-[#07090e] border gold-border gold-accent shadow-sm hover:scale-105 transition-transform cursor-pointer">#HR_Lifecycle</span>
+                    <span class="text-xs font-mono px-3.5 py-1.5 rounded-xl bg-[#07090e] border gold-border gold-accent shadow-sm hover:scale-105 transition-transform cursor-pointer">#RBI_Policies</span>
+                    <span class="text-xs font-mono px-3.5 py-1.5 rounded-xl bg-[#07090e] border gold-border gold-accent shadow-sm hover:scale-105 transition-transform cursor-pointer">#Frequency_Tables</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <audio id="audio-lofi" loop src="https://stream.zeno.fm/f3wvbbqmdg8uv"></audio>
+    <audio id="audio-rain" loop src="https://cdn.pixabay.com/download/audio/2021/08/09/audio_4231bbfb89.mp3?filename=light-rain-loop-24159.mp3"></audio>
+
+    <script>
+        // Secure Gateway Authentication (Password: NOVALINK)
+        function checkPassword() {
+            const passcode = document.getElementById('passcode').value.trim();
+            const authScreen = document.getElementById('auth-screen');
+            const mainContent = document.getElementById('main-content');
+            const errorMsg = document.getElementById('error-msg');
+
+            if (passcode === "NOVALINK") {
+                authScreen.style.opacity = '0';
+                setTimeout(() => {
+                    authScreen.style.display = 'none';
+                    mainContent.classList.remove('hidden');
+                    setTimeout(() => {
+                        mainContent.style.opacity = '1';
+                    }, 50);
+                }, 700);
+            } else {
+                errorMsg.classList.remove('hidden');
+                document.getElementById('passcode').classList.add('border-red-500');
+                setTimeout(() => {
+                    errorMsg.classList.add('hidden');
+                    document.getElementById('passcode').classList.remove('border-red-500');
+                }, 2000);
+            }
+        }
+
+        document.getElementById('passcode').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Customizable Pomodoro Timer Logic
+        let timerInterval;
+        let isRunning = false;
+
+        function updateDisplay(seconds) {
+            let minutes = Math.floor(seconds / 60);
+            let secs = seconds % 60;
+            document.getElementById('timer-display').textContent = `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function setCustomTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            let workMinutes = parseInt(document.getElementById('work-input').value) || 25;
+            updateDisplay(workMinutes * 60);
+        }
+
+        function startTimer() {
+            if (isRunning) return;
+            clearInterval(timerInterval);
+            
+            let workMinutes = parseInt(document.getElementById('work-input').value) || 25;
+            let timeLeft = workMinutes * 60;
+            
+            isRunning = true;
+            timerInterval = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateDisplay(timeLeft);
+                } else {
+                    clearInterval(timerInterval);
+                    isRunning = false;
+                }
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            setCustomTimer();
+        }
+
+        // Functional Formula Drawer Toggle
+        function toggleFormulas() {
+            const drawer = document.getElementById('formula-drawer');
+            const btn = document.getElementById('formula-btn');
+            if (drawer.classList.contains('hidden')) {
+                drawer.classList.remove('hidden');
+                btn.textContent = 'Hide Formulas';
+                btn.classList.add('bg-amber-500', 'text-black');
+                btn.classList.remove('bg-[#07090e]', 'gold-accent');
+            } else {
+                drawer.classList.add('hidden');
+                btn.textContent = 'Expand Formulas';
+                btn.classList.remove('bg-amber-500', 'text-black');
+                btn.classList.add('bg-[#07090e]', 'gold-accent');
+            }
+        }
+
+        // Functional Ambient Audio Controller
+        function toggleAudio(type) {
+            const audio = document.getElementById(`audio-${type}`);
+            const btn = document.getElementById(`btn-${type}`);
+            
+            // Pause other stream if running
+            const otherType = type === 'lofi' ? 'rain' : 'lofi';
+            const otherAudio = document.getElementById(`audio-${otherType}`);
+            const otherBtn = document.getElementById(`btn-${otherType}`);
+            
+            otherAudio.pause();
+            otherBtn.classList.remove('bg-amber-500', 'text-black', 'border-amber-500');
+            otherBtn.classList.add('bg-[#07090e]', 'text-slate-300');
+            otherBtn.textContent = otherType === 'lofi' ? 'Lo-Fi' : 'Rain';
+
+            if (audio.paused) {
+                audio.play().then(() => {
+                    btn.classList.add('bg-amber-500', 'text-black', 'border-amber-500');
+                    btn.classList.remove('bg-[#07090e]', 'text-slate-300');
+                    btn.textContent = 'Playing...';
+                }).catch(() => {
+                    console.log("Audio playback blocked by browser security policy until user interaction.");
+                });
+            } else {
+                audio.pause();
+                btn.classList.remove('bg-amber-500', 'text-black', 'border-amber-500');
+                btn.classList.add('bg-[#07090e]', 'text-slate-300');
+                btn.textContent = type === 'lofi' ? 'Lo-Fi' : 'Rain';
+            }
+        }
+    </script>
+</body>
+</html>
